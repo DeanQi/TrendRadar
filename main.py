@@ -661,9 +661,9 @@ class StatisticsCalculator:
 
         if min_rank <= rank_threshold:
             if min_rank == max_rank:
-                return f"<font color='red'>**[{min_rank}]**</font>"
+                return f"**[{min_rank}]**"
             else:
-                return f"<font color='red'>**[{min_rank} - {max_rank}]**</font>"
+                return f"**[{min_rank} - {max_rank}]**"
         else:
             if min_rank == max_rank:
                 return f"[{min_rank}]"
@@ -917,13 +917,13 @@ class ReportGenerator:
             word = stat["word"]
             count = stat["count"]
 
-            sequence_display = f"<font color='grey'>[{i + 1}/{total_count}]</font>"
+            sequence_display = f"[{i + 1}/{total_count}]"
 
             # 频次颜色分级
             if count >= 10:
-                text_content += f"🔥 {sequence_display} **{word}** : <font color='red'>{count}</font> 条\n\n"
+                text_content += f"🔥 {sequence_display} **{word}** : **{count}** 条\n\n"
             elif count >= 5:
-                text_content += f"📈 {sequence_display} **{word}** : <font color='orange'>{count}</font> 条\n\n"
+                text_content += f"📈 {sequence_display} **{word}** : **{count}** 条\n\n"
             else:
                 text_content += f"📌 {sequence_display} **{word}** : {count} 条\n\n"
 
@@ -946,14 +946,14 @@ class ReportGenerator:
                 else:
                     formatted_title = title
 
-                text_content += f"  {j}. <font color='grey'>[{source_alias}]</font> {formatted_title}"
+                text_content += f"  {j}. [{source_alias}] {formatted_title}"
             
                 if rank_display:
                     text_content += f" {rank_display}"
                 if time_display:
-                    text_content += f" <font color='grey'>- {time_display}</font>"
+                    text_content += f" - {time_display}"
                 if count_info > 1:
-                    text_content += f" <font color='green'>({count_info}次)</font>"
+                    text_content += f" ({count_info}次)"
                 text_content += "\n"
 
                 if j < len(stat["titles"]):
@@ -973,10 +973,10 @@ class ReportGenerator:
 
             text_content += "⚠️ **数据获取失败的平台：**\n\n"
             for i, id_value in enumerate(failed_ids, 1):
-                text_content += f"  • <font color='red'>{id_value}</font>\n"
+                text_content += f"  • {id_value}\n"
 
         now = TimeHelper.get_beijing_time()
-        text_content += f"\n\n<font color='grey'>更新时间：{now.strftime('%Y-%m-%d %H:%M:%S')}</font>"
+        text_content += f"\n\n更新时间：{now.strftime('%Y-%m-%d %H:%M:%S')}"
 
         return text_content
 
